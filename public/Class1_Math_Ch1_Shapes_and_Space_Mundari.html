@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class 1 Math-Magic: Chapter 1 - Shapes and Space (Dual-Zone Bilingual Edition: Zone A Original • Zone B Mundari)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,700&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&family=Noto+Sans+Mundari:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap');
+
+    @page { 
+      size: A4 portrait; 
+      margin: 6mm 8mm; 
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', 'Comic Neue', Arial, sans-serif;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .book-page {
+      background: #ffffff;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 15px auto;
+      padding: 10mm 12mm 12mm 12mm;
+      position: relative;
+      page-break-after: always;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    @media print {
+      body { background: white; }
+      .book-page {
+        margin: 0;
+        padding: 8mm 10mm;
+        box-shadow: none;
+        width: 100%;
+        min-height: 100%;
+        border-radius: 0;
+      }
+      .no-print { display: none; }
+    }
+
+    /* Textbook Side Sun Strip */
+    .side-strip {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: #dc2626;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px 0;
+      z-index: 10;
+    }
+    .sun-icon {
+      width: 14px;
+      height: 14px;
+      background: #fde047;
+      border-radius: 50%;
+      border: 2px solid #ea580c;
+    }
+    .rainbow-arc {
+      width: 14px;
+      height: 7px;
+      border-top: 3px solid #3b82f6;
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* Top Chapter Header Banner */
+    .ch-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-right: 25px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+    .ch-badge-sun {
+      width: 42px;
+      height: 42px;
+      background: #facc15;
+      border-radius: 50%;
+      border: 3px dashed #ea580c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: #7c2d12;
+    }
+    .rainbow-title-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #eff6ff;
+      padding: 5px 18px;
+      border-radius: 30px;
+      border: 2px solid #bfdbfe;
+    }
+    .rainbow-title-box h1 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 900;
+      color: #1e40af;
+    }
+
+    /* DUAL ZONE SPLIT CONTAINER */
+    .dual-zone-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+      margin-right: 18px;
+    }
+
+    /* ZONE A: Original English Textbook */
+    .zone-a-card {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px;
+      position: relative;
+    }
+    .zone-header-a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #e2e8f0;
+      color: #1e293b;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    /* ZONE B: Vernacular Mundari Translation */
+    .zone-b-card {
+      background: #064e3b;
+      border: 2px solid #059669;
+      border-radius: 12px;
+      padding: 10px;
+      color: white;
+      position: relative;
+    }
+    .zone-header-b {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #047857;
+      color: #a7f3d0;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    /* Master Vocabulary Table */
+    .master-vocab-card {
+      background: #f0fdf4;
+      border: 2px solid #86efac;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      margin-right: 18px;
+    }
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .vocab-table th, .vocab-table td {
+      border: 1px solid #cbd5e1;
+      padding: 5px 8px;
+      text-align: left;
+    }
+    .vocab-table th {
+      background: #e2e8f0;
+      color: #1e293b;
+      font-weight: 900;
+    }
+
+    /* Story Dialogue Balloons */
+    .bubble-a {
+      background: white;
+      border: 1.5px solid #cbd5e1;
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+    .bubble-b {
+      background: #022c22;
+      border: 1.5px solid #059669;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fef08a;
+      margin-bottom: 5px;
+    }
+
+    /* Exercise Visual Boxes */
+    .visual-box-a {
+      background: white;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .visual-box-b {
+      background: #022c22;
+      border: 1.5px dashed #059669;
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    /* Teacher's Note Bar */
+    .teachers-note {
+      position: absolute;
+      bottom: 6mm;
+      left: 12mm;
+      right: 20mm;
+      background: #f43f5e;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .page-num {
+      position: absolute;
+      bottom: 1.5mm;
+      left: 12mm;
+      font-size: 10px;
+      font-weight: 900;
+      color: #94a3b8;
+    }
+
+    /* Print Floating Button */
+    .btn-print {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #15803d;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 900;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(21, 128, 61, 0.5);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .btn-print:hover { background: #166534; transform: scale(1.03); }
+  </style>
+</head>
+<body>
+
+  <button onclick="window.print()" class="btn-print no-print">
+    <span>🖨️ Print / Save Dual-Zone Bilingual Book as PDF</span>
+  </button>
+
+  <!-- ========================================================================= -->
+  <!-- 📖 PAGE 1: MASTER VOCABULARY & ZONE A / ZONE B OVERVIEW -->
+  <!-- ========================================================================= -->
+  <div class="book-page">
+    <div class="side-strip">
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+    </div>
+
+    <!-- Chapter Header -->
+    <div class="ch-header">
+      <div class="ch-badge-sun">1</div>
+      <div class="rainbow-title-box">
+        <span style="font-size: 20px;">🌈</span>
+        <h1>1. Shapes and Space (आकार आर ठाई)</h1>
+      </div>
+      <div style="font-size: 11px; font-weight: 900; color: #15803d; background: #dcfce7; padding: 3px 8px; border-radius: 6px;">
+        Dual-Zone Synchronized Edition
+      </div>
+    </div>
+
+    <!-- Master Vocabulary Table Across Both Zones -->
+    <div class="master-vocab-card">
+      <div style="font-size: 13.5px; font-weight: 900; color: #166534; margin-bottom: 6px; display: flex; justify-content: space-between;">
+        <span>📖 Bilingual Vocabulary Master Key (Zone A English $\leftrightarrow$ Zone B Mundari)</span>
+        <span style="background: #15803d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">PALASH Verified</span>
+      </div>
+
+      <table class="vocab-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Zone A: Original (English)</th>
+            <th style="width: 25%;">Hindi Meaning</th>
+            <th style="width: 30%;">Zone B: Mundari (मुण्डारी)</th>
+            <th style="width: 20%;">Phonetics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inside - Outside</strong></td>
+            <td>अंदर - बाहर</td>
+            <td style="color: #15803d; font-weight: 800;">भितर - बाहरे</td>
+            <td style="font-style: italic; color: #64748b;">Bhitar - Bahare</td>
+          </tr>
+          <tr>
+            <td><strong>Bigger - Smaller</strong></td>
+            <td>बड़ा - छोटा</td>
+            <td style="color: #15803d; font-weight: 800;">मराङ - हुरुन</td>
+            <td style="font-style: italic; color: #64748b;">Marang - Hurun</td>
+          </tr>
+          <tr>
+            <td><strong>Biggest - Smallest</strong></td>
+            <td>सबसे बड़ा - सबसे छोटा</td>
+            <td style="color: #15803d; font-weight: 800;">सबते मराङ - सबते हुरुन</td>
+            <td style="font-style: italic; color: #64748b;">Sobte Marang - Sobte Hurun</td>
+          </tr>
+          <tr>
+            <td><strong>Top - Bottom</strong></td>
+            <td>ऊपर - नीचे</td>
+            <td style="color: #15803d; font-weight: 800;">चेतान - लताड़ (फेद)</td>
+            <td style="font-style: italic; color: #64748b;">Chetan - Latar (Phed)</td>
+          </tr>
+          <tr>
+            <td><strong>Nearer - Farther</strong></td>
+            <td>पास - दूर</td>
+            <td style="color: #15803d; font-weight: 800;">जपाः (नेड़े) - संगीन</td>
+            <td style="font-style: italic; color: #64748b;">Japah (Nere) - Sangin</td>
+          </tr>
+          <tr>
+            <td><strong>Nearest - Farthest</strong></td>
+            <td>सबसे पास - सबसे दूर</td>
+            <td style="color: #15803d; font-weight: 800;">सबते जपाः - सबते संगीन</td>
+            <td style="font-style: italic; color: #64748b;">Sobte Japah - Sobte Sangin</td>
+          </tr>
+          <tr>
+            <td><strong>On - Under / Above - Below</strong></td>
+            <td>ऊपर - नीचे</td>
+            <td style="color: #15803d; font-weight: 800;">चेतान रे - लताड़ रे</td>
+            <td style="font-style: italic; color: #64748b;">Chetan re - Latar re</td>
+          </tr>
+          <tr>
+            <td><strong>Rolling - Sliding</strong></td>
+            <td>लुढ़कना - फिसलना</td>
+            <td style="color: #15803d; font-weight: 800;">गुदरांव - घिसड़ांव (सिपिड़)</td>
+            <td style="font-style: italic; color: #64748b;">Gudrang - Ghisrang</td>
+          </tr>
+          <tr>
+            <td><strong>Shapes (Triangle, Circle, Square)</strong></td>
+            <td>आकृतियाँ (त्रिभुज, गोल, चौकोन)</td>
+            <td style="color: #15803d; font-weight: 800;">तिकोन, गोल, चौकोन</td>
+            <td style="font-style: italic; color: #64748b;">Tikon, Gol, Chaukon</td>
+          </tr>
+          <tr>
+            <td><strong>Colors (Green, Red, Blue, Yellow)</strong></td>
+            <td>रंग (हरा, लाल, नीला, पीला)</td>
+            <td style="color: #15803d; font-weight: 800;">हरियर, आराः, लिल, ससांग</td>
+            <td style="font-style: italic; color: #64748b;">Hariyar, Aarah, Lil, Sasang</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Architecture Callout -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-right: 18px;">
+      <div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 8px 12px; border-radius: 8px;">
+        <div style="font-size: 12px; font-weight: 900; color: #1e40af;">🏛️ ZONE A: State Curriculum (English)</div>
+        <div style="font-size: 10.5px; color: #475569; margin-top: 2px;">Standard textbook exercises and classroom pacing reference.</div>
+      </div>
+      <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 8px 12px; border-radius: 8px;">
+        <div style="font-size: 12px; font-weight: 900; color: #065f46;">🗣️ ZONE B: Vernacular Bridge (Mundari)</div>
+        <div style="font-size: 10.5px; color: #047857; margin-top: 2px;">Tribal vocabulary & synchronized phonetics for local learners.</div>
+      </div>
+    </div>
+
+    <div class="teachers-note">
+      <span>Class 1 Mathematics • Chapter 1: Shapes and Space • Dual-Zone Model</span>
+      <span>Page 1 of 5</span>
+    </div>
+    <div class="page-num">1</div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 📖 PAGE 2: INSIDE - OUTSIDE (The Arab and his Camel • Dual Zone) -->
+  <!-- ========================================================================= -->
+  <div class="book-page">
+    <div class="side-strip">
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+    </div>
+
+    <div class="ch-header">
+      <div class="ch-badge-sun">1</div>
+      <div class="rainbow-title-box">
+        <span style="font-size: 18px;">🌈</span>
+        <h1>Inside - Outside (भितर - बाहरे)</h1>
+      </div>
+      <span style="font-weight: 900; color: #64748b; font-size: 12px;">Class 1 Math-Magic</span>
+    </div>
+
+    <!-- DUAL ZONE STORY CONTAINER -->
+    <div class="dual-zone-container">
+      
+      <!-- ZONE A: Original English Textbook -->
+      <div class="zone-a-card">
+        <div class="zone-header-a">
+          <span>Zone A: Original (English)</span>
+          <span>Textbook Source</span>
+        </div>
+
+        <div style="font-size: 12px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+          Story: The Arab and his Camel 🐪
+        </div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.4; margin-bottom: 8px;">
+          It was a cold winter day. The <strong>Arab 👳</strong> was travelling on the <strong>Camel's 🐪</strong> back. At night, the Arab pitched his <strong>tent ⛺</strong> and went <strong>inside</strong> it. The Camel was <strong>outside</strong>.
+        </div>
+
+        <div class="bubble-a">
+          <strong>🐪 Camel:</strong> "May I put my neck <u>inside</u>? It is too cold <u>outside</u>."
+        </div>
+        <div class="bubble-a" style="border-left-color: #10b981;">
+          <strong>👳 Arab:</strong> "Okay! You may put your neck <u>inside</u>."
+        </div>
+        <div class="bubble-a">
+          <strong>🐪 Camel:</strong> "May I put my front legs <u>inside</u>? It is too cold outside."
+        </div>
+        <div class="bubble-a" style="border-left-color: #10b981;">
+          <strong>👳 Arab:</strong> "Okay! You may put your front legs <u>inside</u>."
+        </div>
+        <div class="bubble-a">
+          <strong>🐪 Camel:</strong> "Can I come <u>inside</u>? It is too cold outside."
+        </div>
+        <div class="bubble-a" style="border-left-color: #ef4444;">
+          <strong>👳 Arab:</strong> "Oh! No the tent is too small for both of us."
+        </div>
+        <div class="bubble-a" style="background: #fef2f2; border-left-color: #dc2626;">
+          <strong>🐪 Camel:</strong> "So I am coming <u>inside</u> and you go <u>outside</u>!"
+        </div>
+
+        <div class="visual-box-a" style="margin-top: 6px;">
+          <div style="font-size: 22px;">⛺ 🐪 👳</div>
+          <div style="font-size: 10px; font-weight: 800; color: #475569;">Camel inside tent • Arab outside in cold</div>
+        </div>
+      </div>
+
+      <!-- ZONE B: Vernacular Mundari Translation -->
+      <div class="zone-b-card">
+        <div class="zone-header-b">
+          <span>Zone B: Mundari (मुण्डारी)</span>
+          <span>PALASH Verified</span>
+        </div>
+
+        <div style="font-size: 12px; font-weight: 800; color: #fef08a; margin-bottom: 6px;">
+          कहानी: अरब होड़ो आर अयाः ऊँट 🐪
+        </div>
+        <div style="font-size: 11px; color: #d1fae5; line-height: 1.4; margin-bottom: 8px;">
+          रबाङ दिन रे मियाद <strong>अरब होड़ो 👳</strong> अयाः <strong>ऊँट 🐪</strong> चेतान रे सेन-बारा तनाय ताएकेना। निदा रे अरब होड़ो अयाः <strong>तंबू ⛺</strong> तियाड़ केदा आर <strong>भितर</strong> बोलोयेना। ऊँट दो <strong>बाहरे</strong> रे ताएकेना।
+        </div>
+
+        <div class="bubble-b">
+          <strong>🐪 ऊँट:</strong> "आइं अमः तंबू <span style="color: #f87171;">भितर</span> हॉटोक बोलो दायेया? <span style="color: #f87171;">बाहरे</span> रे पुर सुबुन रबाङा।"
+        </div>
+        <div class="bubble-b" style="border-left-color: #34d399;">
+          <strong>👳 अरब:</strong> "ठीक गेया! अम अमः हॉटोक तंबू <span style="color: #34d399;">भितर</span> दोहो दायेयम।"
+        </div>
+        <div class="bubble-b">
+          <strong>🐪 ऊँट:</strong> "आइं माड़ंग जाङ्गा <span style="color: #f87171;">भितर</span> दोहो दायेया? बाहरे रे पुर रबाङा।"
+        </div>
+        <div class="bubble-b" style="border-left-color: #34d399;">
+          <strong>👳 अरब:</strong> " ठीक गेया! अम अमः माड़ंग जाङ्गा <span style="color: #34d399;">भितर</span> दोहो दायेयम।"
+        </div>
+        <div class="bubble-b">
+          <strong>🐪 ऊँट:</strong> "आइं पूरा <span style="color: #f87171;">भितर</span> हिजुः दायेया? बाहरे रे पुर रबाङा।"
+        </div>
+        <div class="bubble-b" style="border-left-color: #fb7185;">
+          <strong>👳 अरब:</strong> "ओहो! का! तंबू दो आलं बारोन (हम दोनों) लागित पुर हुरुन गेया।"
+        </div>
+        <div class="bubble-b" style="background: #450a0a; border-left-color: #ef4444;">
+          <strong>🐪 ऊँट:</strong> "एनरेदो आइं <span style="color: #34d399;">भितरिं हिजुः तना</span>, आर अम <span style="color: #f87171;">बाहरे सेनोः मे</span>!"
+        </div>
+
+        <div class="visual-box-b" style="margin-top: 6px;">
+          <div style="font-size: 22px;">⛺ 🐪 👳</div>
+          <div style="font-size: 10px; font-weight: 800; color: #a7f3d0;">ऊँट = भितर (Inside) • अरब = बाहरे (Outside)</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="teachers-note">
+      <span>Teacher Note: Use classroom door/objects to demonstrate Inside (भितर) and Outside (बाहरे).</span>
+      <span>Page 2 of 5</span>
+    </div>
+    <div class="page-num">2</div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 📖 PAGE 3: BIGGER - SMALLER & BIGGEST - SMALLEST (Dual Zone) -->
+  <!-- ========================================================================= -->
+  <div class="book-page">
+    <div class="side-strip">
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+    </div>
+
+    <div class="ch-header">
+      <div class="ch-badge-sun">1</div>
+      <div class="rainbow-title-box">
+        <span style="font-size: 18px;">🌈</span>
+        <h1>Bigger - Smaller (मराङ - हुरुन)</h1>
+      </div>
+      <span style="font-weight: 900; color: #64748b; font-size: 12px;">Class 1 Math-Magic</span>
+    </div>
+
+    <div class="dual-zone-container">
+      
+      <!-- ZONE A: Original English -->
+      <div class="zone-a-card">
+        <div class="zone-header-a">
+          <span>Zone A: Original (English)</span>
+          <span>Exercise</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px;">
+          1. Tick (✓) the <strong>bigger</strong>:
+        </div>
+        <div class="visual-box-a" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 26px;">🦛</span><br><span style="font-size: 9.5px; font-weight: 700;">Hippo [✓]</span></div>
+          <div><span style="font-size: 16px;">🐶</span><br><span style="font-size: 9.5px; font-weight: 700;">Puppy [ ]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px; margin-top: 6px;">
+          2. Tick (✓) the <strong>smaller</strong> leaf:
+        </div>
+        <div class="visual-box-a" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 24px;">🍃</span><br><span style="font-size: 9.5px; font-weight: 700;">Banana Leaf [ ]</span></div>
+          <div><span style="font-size: 14px;">🌿</span><br><span style="font-size: 9.5px; font-weight: 700;">Small Leaf [✓]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px; margin-top: 6px;">
+          3. Tick (✓) the <strong>smallest tree</strong>:
+        </div>
+        <div class="visual-box-a" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 16px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700;">Small [✓]</span></div>
+          <div><span style="font-size: 28px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700;">Big [ ]</span></div>
+          <div><span style="font-size: 22px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700;">Medium [ ]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px; margin-top: 6px;">
+          4. <strong>Biggest animal & Smallest fruit</strong>:
+        </div>
+        <div class="visual-box-a" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 26px;">🐘</span><br><span style="font-size: 9px; font-weight: 700;">Elephant (Biggest)</span></div>
+          <div><span style="font-size: 16px;">🍒</span><br><span style="font-size: 9px; font-weight: 700;">Cherry (Smallest)</span></div>
+        </div>
+      </div>
+
+      <!-- ZONE B: Mundari Translation -->
+      <div class="zone-b-card">
+        <div class="zone-header-b">
+          <span>Zone B: Mundari (मुण्डारी)</span>
+          <span>PALASH Verified</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px;">
+          1. <strong>मराङ (Bigger)</strong> जीव रे टिक (✓) लगावे मे:
+        </div>
+        <div class="visual-box-b" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 26px;">🦛</span><br><span style="font-size: 9.5px; font-weight: 700; color: #34d399;">दरियाई घोड़ा [✓]</span></div>
+          <div><span style="font-size: 16px;">🐶</span><br><span style="font-size: 9.5px; font-weight: 700; color: #cbd5e1;">सेता होन [ ]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px; margin-top: 6px;">
+          2. <strong>हुरुन (Smaller)</strong> साकम रे टिक (✓) लगावे मे:
+        </div>
+        <div class="visual-box-b" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 24px;">🍃</span><br><span style="font-size: 9.5px; font-weight: 700; color: #cbd5e1;">मराङ साकम [ ]</span></div>
+          <div><span style="font-size: 14px;">🌿</span><br><span style="font-size: 9.5px; font-weight: 700; color: #34d399;">हुरुन साकम [✓]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px; margin-top: 6px;">
+          3. <strong>सबते हुरुन दारू (Smallest Tree)</strong> रे टिक लगावे:
+        </div>
+        <div class="visual-box-b" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 16px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700; color: #34d399;">हुरुन [✓]</span></div>
+          <div><span style="font-size: 28px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700; color: #cbd5e1;">मराङ [ ]</span></div>
+          <div><span style="font-size: 22px;">🌳</span><br><span style="font-size: 9.5px; font-weight: 700; color: #cbd5e1;">मांझी [ ]</span></div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px; margin-top: 6px;">
+          4. <strong>सबते मराङ जीव आर सबते हुरुन जोः</strong>:
+        </div>
+        <div class="visual-box-b" style="display: flex; justify-content: space-around; align-items: center;">
+          <div><span style="font-size: 26px;">🐘</span><br><span style="font-size: 9px; font-weight: 700; color: #fde047;">हाथी = सबते मराङ</span></div>
+          <div><span style="font-size: 16px;">🍒</span><br><span style="font-size: 9px; font-weight: 700; color: #fde047;">चेरी = सबते हुरुन</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="teachers-note">
+      <span>Key Concepts: Marang (Bigger), Hurun (Smaller), Sobte Marang (Biggest), Sobte Hurun (Smallest).</span>
+      <span>Page 3 of 5</span>
+    </div>
+    <div class="page-num">3</div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 📖 PAGE 4: TOP-BOTTOM, NEAR-FAR, ON-UNDER & ROLLING-SLIDING (Dual Zone) -->
+  <!-- ========================================================================= -->
+  <div class="book-page">
+    <div class="side-strip">
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+    </div>
+
+    <div class="ch-header">
+      <div class="ch-badge-sun">1</div>
+      <div class="rainbow-title-box">
+        <span style="font-size: 18px;">🌈</span>
+        <h1>Top-Bottom & Near-Far (चेतान-लताड़ & जपाः-संगीन)</h1>
+      </div>
+      <span style="font-weight: 900; color: #64748b; font-size: 12px;">Class 1 Math-Magic</span>
+    </div>
+
+    <div class="dual-zone-container">
+      
+      <!-- ZONE A: Original English -->
+      <div class="zone-a-card">
+        <div class="zone-header-a">
+          <span>Zone A: Original (English)</span>
+          <span>Textbook Activity</span>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #1e293b; margin-bottom: 2px;">
+          1. <strong>Top - Bottom</strong>:
+        </div>
+        <div class="visual-box-a">
+          <div>🏺🏺🏺 <strong>Top Pot</strong> [✓] &nbsp;|&nbsp; 🪜🐶 <strong>Bottom Animal</strong> [✓]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #1e293b; margin-bottom: 2px; margin-top: 4px;">
+          2. <strong>Nearer - Farther</strong>:
+        </div>
+        <div class="visual-box-a">
+          <div>🏡 🐦 <strong>Nearer Bird to house</strong> [✓] &nbsp;|&nbsp; 🌳 🐱 <strong>Farther Cat from tree</strong> [✓]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #1e293b; margin-bottom: 2px; margin-top: 4px;">
+          3. <strong>On - Under (Table Scene)</strong>:
+        </div>
+        <div class="visual-box-a" style="font-size: 10.5px;">
+          <div>🌀 Fan = <strong>Above table</strong></div>
+          <div>🐱 Cat = <strong>On table</strong> [✓] &nbsp;|&nbsp; 🐭 Rat = <strong>Under table</strong> [✗]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #1e293b; margin-bottom: 2px; margin-top: 4px;">
+          4. <strong>Rolling - Sliding</strong>:
+        </div>
+        <div class="visual-box-a" style="font-size: 10.5px;">
+          <div>⚽ ✏️ 🧅 <strong>Rolling Objects</strong>: Ball, Pencil, Onion</div>
+          <div>📦 🧳 🔋 <strong>Sliding Objects</strong>: Box, Suitcase, Battery</div>
+        </div>
+      </div>
+
+      <!-- ZONE B: Mundari Translation -->
+      <div class="zone-b-card">
+        <div class="zone-header-b">
+          <span>Zone B: Mundari (मुण्डारी)</span>
+          <span>PALASH Verified</span>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #fef08a; margin-bottom: 2px;">
+          1. <strong>चेतान - लताड़ (Top - Bottom)</strong>:
+        </div>
+        <div class="visual-box-b">
+          <div>🏺🏺🏺 <strong>सबते चेतान रेयाः चटु</strong> [✓] &nbsp;|&nbsp; 🪜🐶 <strong>लताड़ रेयाः सेता</strong> [✓]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #fef08a; margin-bottom: 2px; margin-top: 4px;">
+          2. <strong>जपाः - संगीन (Nearer - Farther)</strong>:
+        </div>
+        <div class="visual-box-b">
+          <div>🏡 🐦 <strong>ओड़ाः जपाः रेयाः चेणे</strong> [✓] &nbsp;|&nbsp; 🌳 🐱 <strong>दारू खोन संगीन पुसी</strong> [✓]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #fef08a; margin-bottom: 2px; margin-top: 4px;">
+          3. <strong>चेतान - लताड़ (मेज चेतान / लताड़)</strong>:
+        </div>
+        <div class="visual-box-b" style="font-size: 10.5px;">
+          <div>🌀 पंखा = <strong>मेज चेतान</strong></div>
+          <div>🐱 पुसी = <strong>मेज चेतान रे</strong> [✓] &nbsp;|&nbsp; 🐭 चेंदू = <strong>मेज लताड़ रे</strong> [✗]</div>
+        </div>
+
+        <div style="font-size: 11px; font-weight: 800; color: #fef08a; margin-bottom: 2px; margin-top: 4px;">
+          4. <strong>गुदरांव - घिसड़ांव (Rolling - Sliding)</strong>:
+        </div>
+        <div class="visual-box-b" style="font-size: 10.5px;">
+          <div>⚽ ✏️ 🧅 <strong>गुदरांव जिनिस</strong>: बॉल, पेंसिल, प्याज</div>
+          <div>📦 🧳 🔋 <strong>घिसड़ांव जिनिस</strong>: बाक्सा, सूटकेस, बैटरी</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="teachers-note">
+      <span>Mundari Terms: Chetan (Top), Latar (Bottom), Japah (Near), Sangin (Far), Gudrang (Roll), Ghisrang (Slide).</span>
+      <span>Page 4 of 5</span>
+    </div>
+    <div class="page-num">4</div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 📖 PAGE 5: WISE GRANDMOTHER & SHAPES KIT (Dual Zone) -->
+  <!-- ========================================================================= -->
+  <div class="book-page">
+    <div class="side-strip">
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+      <div class="rainbow-arc"></div>
+      <div class="sun-icon"></div>
+    </div>
+
+    <div class="ch-header">
+      <div class="ch-badge-sun">1</div>
+      <div class="rainbow-title-box">
+        <span style="font-size: 18px;">🌈</span>
+        <h1>Wise Grandmother & Shapes (सयान बुढ़ी & आकार को)</h1>
+      </div>
+      <span style="font-weight: 900; color: #64748b; font-size: 12px;">Class 1 Math-Magic</span>
+    </div>
+
+    <div class="dual-zone-container">
+      
+      <!-- ZONE A: Original English -->
+      <div class="zone-a-card">
+        <div class="zone-header-a">
+          <span>Zone A: Original (English)</span>
+          <span>Story & Geometry</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px;">
+          🥁 Story: The Wise Grandmother
+        </div>
+        <div style="font-size: 10px; line-height: 1.4; color: #334155; margin-bottom: 6px;">
+          1. A Lamb was going to see his grandmother.<br>
+          2. On the way, a Wolf met him: <em>"I will eat you!"</em><br>
+          3. Grandmother gave an idea: <em>"Hide in a dholak!"</em><br>
+          4. The dholak rolled down the road safely home!
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 4px;">
+          📐 Geometric Shapes & Colors
+        </div>
+        <div class="visual-box-a" style="font-size: 10px;">
+          <div>▲ <strong>Triangle</strong> $\rightarrow$ Green</div>
+          <div>● <strong>Circle</strong> $\rightarrow$ Red & Pink</div>
+          <div>■ <strong>Rectangle/Square</strong> $\rightarrow$ Blue & Yellow</div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #1e293b; margin-bottom: 2px;">
+          🎨 Shape Kit Figures
+        </div>
+        <div class="visual-box-a" style="display: flex; justify-content: space-around; font-size: 10px;">
+          <div>🦋 <strong>Butterfly</strong></div>
+          <div>🐟 <strong>Fish</strong></div>
+        </div>
+      </div>
+
+      <!-- ZONE B: Mundari Translation -->
+      <div class="zone-b-card">
+        <div class="zone-header-b">
+          <span>Zone B: Mundari (मुण्डारी)</span>
+          <span>PALASH Verified</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px;">
+          🥁 कहानी: सयान बुढ़ी आर मेंढ़ा होन
+        </div>
+        <div style="font-size: 10px; line-height: 1.4; color: #d1fae5; margin-bottom: 6px;">
+          1. मेंढ़ा होन अयाः बुढ़ी नेल लागित सेनोः तनाय ताएकेना।<br>
+          2. होर रे हुंडर ताकेद किया: <em>"आइं अमके जोमेया!"</em><br>
+          3. सयान बुढ़ी काजी किया: <em>"ढोलक भितर उकुन मे!"</em><br>
+          4. ढोलक गुदरांव-गुदरांव सेना आर मेंढ़ा होन सुरक्षित ओड़ाः बोलोयेना!
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 4px;">
+          📐 आकार को आर रंग (Mundari Shapes)
+        </div>
+        <div class="visual-box-b" style="font-size: 10px;">
+          <div>▲ <strong>तिकोन (Triangle)</strong> $\rightarrow$ हरियर (Green)</div>
+          <div>● <strong>गोल (Circle)</strong> $\rightarrow$ आराः (Red) & गुलाबी</div>
+          <div>■ <strong>चौकोन (Rectangle)</strong> $\rightarrow$ लिल (Blue) & ससांग</div>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 800; color: #fef08a; margin-bottom: 2px;">
+          🎨 आकार किट मूरत बाई
+        </div>
+        <div class="visual-box-b" style="display: flex; justify-content: space-around; font-size: 10px;">
+          <div>🦋 <strong>फुतुकड़ी (तितली)</strong></div>
+          <div>🐟 <strong>हाकु (मछली)</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="teachers-note">
+      <span>Complete Dual-Zone Textbook Translation • Class 1 Math-Magic Chapter 1</span>
+      <span>Page 5 of 5</span>
+    </div>
+    <div class="page-num">5</div>
+  </div>
+
+</body>
+</html>
