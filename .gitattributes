@@ -1,2 +1,3 @@
+# GitHub Linguist language override
 *.ts linguist-language=JavaScript
 *.tsx linguist-language=JavaScript
